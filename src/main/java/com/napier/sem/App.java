@@ -34,7 +34,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -68,6 +68,56 @@ public class App
             }
         }
     }
+    public country getcountry()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new country if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                return cty;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+            return null;
+        }
+    }
+    public void displayEmployee(country cty)
+    {
+        System.out.println(
+                "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+        );
+        if (cty != null)
+        {
+            System.out.println(
+                    cty.ID + "  "
+                            + cty.name + " "
+                            + cty.continent + "  "
+                            + cty.region + "  "
+                            + cty.population + "  "
+                            + cty.capital + "  ");
+        }
+    }
     public static void main(String[] args)
     {
         // Create new Application
@@ -75,7 +125,10 @@ public class App
 
         // Connect to database
         a.connect();
-
+        // Get Employee
+        country cty = a.getcountry();
+        // Display results
+        a.displayEmployee(cty);
         // Disconnect from database
         a.disconnect();
     }
