@@ -5,14 +5,8 @@ import java.util.ArrayList;
 
 public class App
 {
-    /**
-     * Connection to MySQL database.
-     */
     private Connection con = null;
-
-    /**
-     * Connect to the MySQL database.
-     */
+    // Connect Function
     public void connect()
     {
         try
@@ -50,10 +44,7 @@ public class App
             }
         }
     }
-
-    /**
-     * Disconnect from the MySQL database.
-     */
+    // Disconnect Function
     public void disconnect()
     {
         if (con != null)
@@ -69,10 +60,46 @@ public class App
             }
         }
     }
+    // execute all of the city ordering with population
+    public ArrayList<city> getcity()
+    {
+        try
+        {
+            System.out.println("All of the city which are ordered by descending");
+            System.out.println(
+                    "Name" + "\t" + "Country" + "\t" + "Distinct" + "\t" + "Population"
+            );
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population  from city order by Population desc";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<city> count6 = new ArrayList<>();
+            while (rset.next())
+            {
+                city cty = new city();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count6.add(cty);
+                displaycilty(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public ArrayList<country> getcountry()
     {
         try
         {
+            System.out.println("All of the countries which are ordered by descending");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -103,6 +130,193 @@ public class App
         }
         return null;
     }
+    public ArrayList<city> getcitycontinent()
+    {
+        try
+        {
+            System.out.println("All of the cities in a Asia Continent which are ordered by population descending ");
+            System.out.println(
+                    "Name" + "\t" + "Country" + "\t" + "Distinct" + "\t" + "Population"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code, country.continent from city, country " +
+                            "WHERE country.Continent = 'Asia' and CountryCode = country.Code order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<city> count7 = new ArrayList<>();
+            while (rset.next())
+            {
+                city cty = new city();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count7.add(cty);
+                displaycilty(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<country> getcountrycontinent()
+    {
+        try
+        {
+            System.out.println("All of the countries in a Asia Continent which are ordered by population descending ");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country WHERE Continent = 'Asia' order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count1 = new ArrayList<>();
+            // Return new country if valid.
+            // Check one is returned
+            while (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                count1.add(cty);
+                displaycountry(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<country> getcountryregion()
+    {
+        try
+        {
+            System.out.println("All of the countries in a Asia region which are ordered by population descending ");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country WHERE Region = 'North America' order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count2 = new ArrayList<>();
+            // Return new country if valid.
+            // Check one is returned
+            while (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                count2.add(cty);
+                displaycountry(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<country> getcountrycontinentlimit10()
+    {
+        try
+        {
+            System.out.println("Top 10  countries in a Asia Continent which are ordered by population descending ");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country WHERE Continent = 'Asia' order by Population desc limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count4 = new ArrayList<>();
+            // Return new country if valid.
+            // Check one is returned
+            while (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                count4.add(cty);
+                displaycountry(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<country> getcountryregionlimit10()
+    {
+        try
+        {
+            System.out.println("Top 10 countries in a Asia region which are ordered by population descending ");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country WHERE Region = 'North America' order by Population desc limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count5 = new ArrayList<>();
+            // Return new country if valid.
+            // Check one is returned
+            while (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                count5.add(cty);
+                displaycountry(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public void displaycountry(country cty)
     {
 
@@ -117,6 +331,56 @@ public class App
                             + cty.capital + "  ");
         }
     }
+    public void displaycilty(city city)
+    {
+
+        if (city != null)
+        {
+            System.out.println(
+                    city.getName()+ "  "
+                            + city.getCountry() + " "
+                            + city.getDistrict() + "  "
+                            + city.getPopulation()+ "  ");
+        }
+    }
+    public ArrayList<country> getcountrylimit10()
+    {
+        try
+        {
+            System.out.println("Top 10 countries which are ordered by descending");
+            System.out.println(
+                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+            );
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country order by Population desc limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count3 = new ArrayList<>();
+            // Return new country if valid.
+            // Check one is returned
+            while (rset.next())
+            {
+                country cty = new country();
+                cty.name = rset.getString("Name");
+                cty.continent= rset.getString("Continent");
+                cty.region = rset.getString("Region");
+                cty.population = rset.getInt("Population");
+                cty.capital = rset.getInt("Capital");
+                count3.add(cty);
+                displaycountry(cty);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public static void main(String[] args)
     {
         // Create new Application
@@ -125,11 +389,15 @@ public class App
         // Connect to database
         a.connect();
         // Get country
-        System.out.println("All of the countries which are ordered by descending");
-        System.out.println(
-                "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-        );
-        ArrayList<country> count = a.getcountry();
+
+        // ArrayList<country> count = a.getcountry();
+        // ArrayList<country> count1 = a.getcountrycontinent();
+        // ArrayList<country> count2 = a.getcountryregion();
+        // ArrayList<country> count3 = a.getcountrylimit10();
+        // ArrayList<country> count4 = a.getcountrycontinentlimit10();
+        // ArrayList<country> count5 = a.getcountryregionlimit10();
+        // ArrayList<city> count6 = a.getcity();
+        ArrayList<city> count7 = a.getcitycontinent();
         // Display results
         // Disconnect from database
         a.disconnect();
