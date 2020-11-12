@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -68,7 +69,7 @@ public class App
             }
         }
     }
-    public country getcountry()
+    public ArrayList<country> getcountry()
     {
         try
         {
@@ -77,12 +78,13 @@ public class App
             // Create string for SQL statement
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country";
+                            + "FROM country order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<country> count = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
-            if (rset.next())
+            while (rset.next())
             {
                 country cty = new country();
                 cty.name = rset.getString("Name");
@@ -90,23 +92,20 @@ public class App
                 cty.region = rset.getString("Region");
                 cty.population = rset.getInt("Population");
                 cty.capital = rset.getInt("Capital");
-                return cty;
+                count.add(cty);
+                displaycountry(cty);
             }
-            else
-                return null;
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get world details");
-            return null;
         }
+        return null;
     }
-    public void displayEmployee(country cty)
+    public void displaycountry(country cty)
     {
-        System.out.println(
-                "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-        );
+
         if (cty != null)
         {
             System.out.println(
@@ -125,10 +124,13 @@ public class App
 
         // Connect to database
         a.connect();
-        // Get Employee
-        country cty = a.getcountry();
+        // Get country
+        System.out.println("All of the countries which are ordered by descending");
+        System.out.println(
+                "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
+        );
+        ArrayList<country> count = a.getcountry();
         // Display results
-        a.displayEmployee(cty);
         // Disconnect from database
         a.disconnect();
     }
