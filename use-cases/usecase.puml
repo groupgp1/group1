@@ -1,0 +1,29 @@
+@startuml
+
+actor HR as "User"
+
+rectangle Database
+
+rectangle "World Report System" {
+
+    usecase UCa as "GetCountry"
+
+    usecase UC3 as "DisplayCountry"
+
+    usecase UC2 as "GetCity"
+    usecase UC1 as "DisplayCity"
+
+    HR - UC4
+    HR - UCa
+    HR - UC2
+    HR - UC5
+    UC3 ..> UCa : include
+    UC2 ..> UC1 : include
+
+    UCa - Database
+    UC4 - Database
+    UC2 - Database
+    UC5 - Database
+}
+
+@enduml

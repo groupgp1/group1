@@ -1,10 +1,10 @@
 package com.napier.sem;
 
 public class city {
-    String name;
-    String country;
-    String District;
-    String Population;
+    private String name;
+    private String country;
+    private String District;
+    private String Population;
 
     public String getName() {
         return name;
