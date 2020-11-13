@@ -1,6 +1,6 @@
 package com.napier.sem;
 
-public class city {
+public class City {
     private String name;
     private String country;
     private String District;

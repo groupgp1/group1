@@ -60,7 +60,7 @@ public class App
             }
         }
     }
-    public ArrayList<country> GetCountry()
+    public ArrayList<Country> getCountry()
     {
         try
         {
@@ -76,12 +76,12 @@ public class App
                             + "FROM country order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count = new ArrayList<>();
+            ArrayList<Country> count = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -98,7 +98,7 @@ public class App
         }
         return null;
     }
-    public ArrayList<country> GetCountryContinent()
+    public ArrayList<Country> getCountryContinent()
     {
         try
         {
@@ -114,12 +114,12 @@ public class App
                             + "FROM country WHERE Continent = 'Asia' order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count1 = new ArrayList<>();
+            ArrayList<Country> count1 = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -136,7 +136,7 @@ public class App
         }
         return null;
     }
-    public ArrayList<country> GetCountryRegion()
+    public ArrayList<Country> getCountryRegion()
     {
         try
         {
@@ -152,12 +152,12 @@ public class App
                             + "FROM country WHERE Region = 'North America' order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count2 = new ArrayList<>();
+            ArrayList<Country> count2 = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -175,7 +175,7 @@ public class App
         return null;
     }
 
-    public ArrayList<country> GetCountryLimit10()
+    public ArrayList<Country> getCountryLimit10()
     {
         try
         {
@@ -191,12 +191,12 @@ public class App
                             + "FROM country order by Population desc limit 10";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count3 = new ArrayList<>();
+            ArrayList<Country> count3 = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -213,7 +213,7 @@ public class App
         }
         return null;
     }
-    public ArrayList<country> GetCountryContinentLimit10()
+    public ArrayList<Country> getCountryContinentLimit10()
     {
         try
         {
@@ -229,12 +229,12 @@ public class App
                             + "FROM country WHERE Continent = 'Asia' order by Population desc limit 10";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count4 = new ArrayList<>();
+            ArrayList<Country> count4 = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -251,7 +251,7 @@ public class App
         }
         return null;
     }
-    public ArrayList<country> GetCountryRegionLimit10()
+    public ArrayList<Country> getCountryRegionLimit10()
     {
         try
         {
@@ -267,12 +267,12 @@ public class App
                             + "FROM country WHERE Region = 'North America' order by Population desc limit 10";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<country> count5 = new ArrayList<>();
+            ArrayList<Country> count5 = new ArrayList<>();
             // Return new country if valid.
             // Check one is returned
             while (rset.next())
             {
-                country cty = new country();
+                Country cty = new Country();
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
@@ -290,7 +290,7 @@ public class App
         return null;
     }
     // execute all of the city ordering with population
-    public ArrayList<city> GetCity()
+    public ArrayList<City> getCity()
     {
         try
         {
@@ -302,10 +302,10 @@ public class App
             String strSelect =
                     "SELECT Name, CountryCode, District, Population  from city order by Population desc";
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<city> count6 = new ArrayList<>();
+            ArrayList<City> count6 = new ArrayList<>();
             while (rset.next())
             {
-                city cty = new city();
+                City cty = new City();
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
@@ -322,7 +322,7 @@ public class App
         return null;
     }
     
-    public ArrayList<city> GetCityContinent()
+    public ArrayList<City> getCityContinent()
     {
         try
         {
@@ -338,10 +338,10 @@ public class App
                             "WHERE country.Continent = 'Asia' and CountryCode = country.Code order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<city> count7 = new ArrayList<>();
+            ArrayList<City> count7 = new ArrayList<>();
             while (rset.next())
             {
-                city cty = new city();
+                City cty = new City();
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
@@ -357,9 +357,9 @@ public class App
         }
         return null;
     }
-    public void DisplayCountry(ArrayList<country> countries)
+    public void displayCountry(ArrayList<Country> countries)
     {
-        for(country c: countries){
+        for(Country c: countries){
             System.out.println(
                     c.ID + "  "
                             + c.name + " "
@@ -369,9 +369,9 @@ public class App
                             + c.capital + "  ");
         }
     }
-    public void DisplayCity(ArrayList<city> cities)
+    public void displayCity(ArrayList<City> cities)
     {
-        for(city c: cities){
+        for(City c: cities){
             System.out.println(
                     c.getName()+ "  "
                             + c.getCountry() + " "
@@ -388,17 +388,23 @@ public class App
         a.connect();
         // Get country
 
-        // ArrayList<country> count = a.GetCountry();
-        // ArrayList<country> count1 = a.GetCountryContinent();
-        // ArrayList<country> count2 = a.GetCountryRegion();
-        ArrayList<country> count3 = a.GetCountryLimit10();
-        // ArrayList<country> count4 = a.GetCountryContinentLimit10();
-        // ArrayList<country> count5 = a.GetCountryRegionLimit10();
-        // ArrayList<city> count6 = a.GetCity();
-        //ArrayList<city> count7 = a.GetCityContinent();
+        ArrayList<Country> count = a.getCountry();
+        a.displayCountry(count);
+        ArrayList<Country> count1 = a.getCountryContinent();
+        a.displayCountry(count1);
+        ArrayList<Country> count2 = a.getCountryRegion();
+        a.displayCountry(count2);
+        ArrayList<Country> count3 = a.getCountryLimit10();
+        a.displayCountry(count3);
+        ArrayList<Country> count4 = a.getCountryContinentLimit10();
+        a.displayCountry(count4);
+        ArrayList<Country> count5 = a.getCountryRegionLimit10();
+        a.displayCountry(count5);
+        ArrayList<City> count6 = a.getCity();
+        a.displayCity(count6);
+        ArrayList<City> count7 = a.getCityContinent();
+        a.displayCity(count7);
         // Display results
-        a.DisplayCountry(count3);
-        //a.DisplayCity(count7);
         // Disconnect from database
         a.disconnect();
     }
