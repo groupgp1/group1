@@ -465,10 +465,16 @@ public class App
 
     public void displayCountry(ArrayList<Country> countries)
     {
+        if (countries == null){
+            System.out.println("No countries");
+            return;
+        }
         System.out.println(String.format("%-10s %-15s %-20s %-15s %-15s %-15s", "Country No", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all employees in the list
         for (Country c: countries)
         {
+            if (c == null)
+                continue;
             String country_string =
                     String.format("%-10s %-15s %-20s %-15s %-15s %-15s",
                             c.ID, c.name, c.continent, c.region, c.population, c.capital);
@@ -477,9 +483,15 @@ public class App
     }
     public void displayCity(ArrayList<City> cities)
     {
+        if (cities == null){
+            System.out.println("No Cities");
+            return;
+        }
         System.out.println(String.format("%-10s %-10s %-10s %-10s", "Name", "Country", "District", "Population"));
         for(City c: cities)
         {
+            if (c == null)
+                continue;
             String city_string = String.format("%-10s %-10s %-10s %-10s", c.getName(),c.getCountry(),c.getDistrict(),c.getPopulation());
             System.out.println(city_string);
         }
