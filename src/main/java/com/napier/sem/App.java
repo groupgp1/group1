@@ -462,7 +462,40 @@ public class App
         }
         return null;
     }
-
+    public City getCity(String name)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population "
+                            + "FROM city "
+                            + "WHERE Name = 'Tilburg'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("Name"));
+                c.setCountry(rset.getString("CountryCode"));
+                c.setDistrict(rset.getString("District"));
+                c.setPopulation(rset.getString("Population"));
+                return c;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
     public void displayCountry(ArrayList<Country> countries)
     {
         if (countries == null){
@@ -529,6 +562,8 @@ public class App
         //a.displayCity(count10);
         ArrayList<City> count11 = a.getCityLimit10();
         a.displayCity(count11);
+        City c = a.getCity("Tilburg");
+        System.out.println(c);
         // Display results
         // Disconnect from database
         a.disconnect();
