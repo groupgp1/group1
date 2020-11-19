@@ -367,6 +367,39 @@ public class App
         return null;
     }
 
+    public ArrayList<City> getCityCountry()
+    {
+        try
+        {
+            System.out.println("All the cities in a country organised by largest population to smallest ");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
+                            "WHERE CountryCode = country.Code order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count8 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count8.add(cty);
+            }
+            return count9;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public void displayCountry(ArrayList<Country> countries)
     {
         System.out.println(String.format("%-10s %-15s %-20s %-15s %-15s %-15s", "Country No", "Name", "Continent", "Region", "Population", "Capital"));
@@ -413,8 +446,10 @@ public class App
         //a.displayCity(count6);
         //ArrayList<City> count7 = a.getCityContinent();
         //a.displayCity(count7);
-        ArrayList<City> count8 = a.getCityContinent();
+        ArrayList<City> count8 = a.getCityRegion();
         a.displayCity(count8);
+        ArrayList<City> count9 = a.getCityCountry();
+        a.displayCity(count9);
         // Display results
         // Disconnect from database
         a.disconnect();
