@@ -380,7 +380,7 @@ public class App
                             "WHERE CountryCode = country.Code order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> count8 = new ArrayList<>();
+            ArrayList<City> count9 = new ArrayList<>();
             while (rset.next())
             {
                 City cty = new City();
@@ -388,7 +388,7 @@ public class App
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
                 cty.setPopulation(rset.getString("population"));
-                count8.add(cty);
+                count9.add(cty);
             }
             return count9;
         }
