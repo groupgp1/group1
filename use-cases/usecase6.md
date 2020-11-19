@@ -4,7 +4,7 @@
 As a user I want the top N populated countries in a region where N is provided by the user so that I can know the exact top N populated countries in a region where N is provided by the user.
 
 Scope
-World
+World.
 
 Level
 Primary task.

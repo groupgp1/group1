@@ -65,9 +65,6 @@ public class App
         try
         {
             System.out.println("All of the countries which are ordered by descending");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -103,9 +100,6 @@ public class App
         try
         {
             System.out.println("All of the countries in a Asia Continent which are ordered by population descending ");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -141,9 +135,6 @@ public class App
         try
         {
             System.out.println("All of the countries in a Asia region which are ordered by population descending ");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -180,9 +171,6 @@ public class App
         try
         {
             System.out.println("Top 10 countries which are ordered by descending");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -218,9 +206,6 @@ public class App
         try
         {
             System.out.println("Top 10  countries in a Asia Continent which are ordered by population descending ");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -256,9 +241,6 @@ public class App
         try
         {
             System.out.println("Top 10 countries in a Asia region which are ordered by population descending ");
-            System.out.println(
-                    "Code" + "\t" + "Name" + "\t" + "Continent" + "\t" + "Region" + "\t" + "Population" + "\t" + "capital"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -295,9 +277,6 @@ public class App
         try
         {
             System.out.println("All of the city which are ordered by descending");
-            System.out.println(
-                    "Name" + "\t" + "Country" + "\t" + "Distinct" + "\t" + "Population"
-            );
             Statement stmt = con.createStatement();
             String strSelect =
                     "SELECT Name, CountryCode, District, Population  from city order by Population desc";
@@ -327,9 +306,6 @@ public class App
         try
         {
             System.out.println("All of the cities in a Asia Continent which are ordered by population descending ");
-            System.out.println(
-                    "Name" + "\t" + "Country" + "\t" + "Distinct" + "\t" + "Population"
-            );
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -359,25 +335,24 @@ public class App
     }
     public void displayCountry(ArrayList<Country> countries)
     {
-        for(Country c: countries){
-            System.out.println(
-                    c.ID + "  "
-                            + c.name + " "
-                            + c.continent + "  "
-                            + c.region + "  "
-                            + c.population + "  "
-                            + c.capital + "  ");
+        System.out.println(String.format("%-10s %-15s %-20s %-15s %-15s %-15s", "Country No", "Name", "Continent", "Region", "Population", "Capital"));
+        // Loop over all employees in the list
+        for (Country c: countries)
+        {
+            String country_string =
+                    String.format("%-10s %-15s %-20s %-15s %-15s %-15s",
+                            c.ID, c.name, c.continent, c.region, c.population, c.capital);
+            System.out.println(country_string);
         }
     }
     public void displayCity(ArrayList<City> cities)
     {
-        for(City c: cities){
-            System.out.println(
-                    c.getName()+ "  "
-                            + c.getCountry() + " "
-                            + c.getDistrict() + "  "
-                            + c.getPopulation()+ "  ");
-    }
+        System.out.println(String.format("%-10s %-10s %-10s %-10s", "Name", "Country", "District", "Population"));
+        for(City c: cities)
+        {
+            String city_string = String.format("%-10s %-10s %-10s %-10s", c.getName(),c.getCountry(),c.getDistrict(),c.getPopulation());
+            System.out.println(city_string);
+        }
     }
     public static void main(String[] args)
     {
