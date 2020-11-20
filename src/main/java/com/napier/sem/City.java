@@ -6,6 +6,15 @@ public class City {
     private String District;
     private String Population;
     private String Region;
+    private String Continent;
+
+    public String getContinent() {
+        return Continent;
+    }
+
+    public void setContinent(String continent) {
+        Continent = continent;
+    }
 
     public String getRegion() {
         return Region;

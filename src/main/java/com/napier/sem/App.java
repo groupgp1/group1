@@ -300,7 +300,7 @@ public class App
         }
         return null;
     }
-    
+
     public ArrayList<City> getCityContinent()
     {
         try
