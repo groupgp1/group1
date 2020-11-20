@@ -5,6 +5,15 @@ public class City {
     private String country;
     private String District;
     private String Population;
+    private String Region;
+
+    public String getRegion() {
+        return Region;
+    }
+
+    public void setRegion(String region) {
+        Region = region;
+    }
 
     public String getName() {
         return name;

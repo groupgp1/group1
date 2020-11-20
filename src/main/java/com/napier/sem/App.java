@@ -355,6 +355,7 @@ public class App
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
                 cty.setPopulation(rset.getString("population"));
+                cty.setRegion(rset.getString("country.Region"));
                 count8.add(cty);
             }
             return count8;
