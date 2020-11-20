@@ -21,6 +21,10 @@ rectangle "World Report System" {
     usecase UC10 as "GetCityWithCountry"
     usecase UC11 as "GetCityWithLimit10"
     usecase UC12 as "GetCityWithDistrict"
+    usecase UC13 as "Get10CitiesWithCountry"
+    usecase UC14 as "Get10CitiesWithRegion"
+    usecase UC15 as "Get10CitiesWithContinent"
+    usecase UC16 as "Get10CitiesWithDistrict"
 
     user - UC1
     user - UC2
@@ -34,6 +38,10 @@ rectangle "World Report System" {
     user - UC10
     user - UC11
     user - UC12
+    user - UC13
+    user - UC14
+    user - UC15
+    user - UC16
 
     UC1 ..> UCa : include
     UC2 ..> UCa : include
@@ -47,6 +55,10 @@ rectangle "World Report System" {
     UC10 ..> UCb : include
     UC11 ..> UCb : include
     UC12 ..> UCb : include
+    UC13 ..> UCb : include
+    UC14 ..> UCb : include
+    UC15 ..> UCb : include
+    UC16 ..> UCb : include
 
     UC1 - Database
     UC2 - Database
@@ -60,6 +72,10 @@ rectangle "World Report System" {
     UC10 - Database
     UC11 - Database
     UC12 - Database
+    UC13 - Database
+    UC14 - Database
+    UC15 - Database
+    UC16 - Database
 
 }
 

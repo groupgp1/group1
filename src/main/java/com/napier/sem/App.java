@@ -463,6 +463,134 @@ public class App
         }
         return null;
     }
+    public ArrayList<City> getCityContinentLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated cities in a continent");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code, country.continent from city, country WHERE country.Continent = 'Asia' and CountryCode = country.Code limit 10 ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count12 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count12.add(cty);
+            }
+            return count12;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityRegionLimit10()
+    {
+        try
+        {
+            System.out.println("top 10 populated cities in a Region");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code, country.Region from city, country " +
+                            "WHERE country.Region = 'Caribbean' and CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count13 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                cty.setRegion(rset.getString("country.Region"));
+                count13.add(cty);
+            }
+            return count13;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityCountryLimit10()
+    {
+        try
+        {
+            System.out.println("top 10 populated cities in a country");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
+                            "WHERE CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count14 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count14.add(cty);
+            }
+            return count14;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityDistrictLimit10()
+    {
+        try
+        {
+            System.out.println("Top 10 populated cities in a district");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
+                            "WHERE District = 'Gelderland' limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count15 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getString("population"));
+                count15.add(cty);
+            }
+            return count15;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public City getCity(String name)
     {
         try
@@ -571,8 +699,14 @@ public class App
         //a.displayCity(count10);
         ArrayList<City> count11 = a.getCityLimit10();
         a.displayCity(count11);
-        City c = a.getCity("Tilburg");
-        System.out.println(c);
+        ArrayList<City> count12 = a.getCityContinentLimit10();
+        a.displayCity(count12);
+        ArrayList<City> count13 = a.getCityRegionLimit10();
+        a.displayCity(count13);
+        ArrayList<City> count14 = a.getCityCountryLimit10();
+        a.displayCity(count14);
+        ArrayList<City> count15 = a.getCityDistrictLimit10();
+        a.displayCity(count15);
         // Display results
         // Disconnect from database
         a.disconnect();
