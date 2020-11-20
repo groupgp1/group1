@@ -40,7 +40,7 @@ public class AppIntegrationTest
     }
     @Test
     void testGetCitiesDistrict(){
-        ArrayList<City> cities = app.getCityCountry();
+        ArrayList<City> cities = app.getCityDistrict();
         for (City c: cities){
             String district = c.getDistrict();
             assertEquals("Gelderland",district);
