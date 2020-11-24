@@ -82,7 +82,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count.add(cty);
             }
@@ -117,7 +117,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count1.add(cty);
             }
@@ -152,7 +152,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count2.add(cty);
             }
@@ -188,7 +188,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count3.add(cty);
             }
@@ -223,7 +223,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count4.add(cty);
             }
@@ -258,7 +258,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count5.add(cty);
             }
@@ -288,7 +288,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count6.add(cty);
             }
             return count6;
@@ -321,7 +321,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count7.add(cty);
             }
             return count7;
@@ -354,7 +354,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 cty.setRegion(rset.getString("country.Region"));
                 count8.add(cty);
             }
@@ -388,7 +388,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count9.add(cty);
             }
             return count9;
@@ -420,7 +420,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count10.add(cty);
             }
             return count10;
@@ -451,7 +451,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count11.add(cty);
             }
             return count11;
@@ -482,7 +482,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count12.add(cty);
             }
             return count12;
@@ -514,7 +514,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 cty.setRegion(rset.getString("country.Region"));
                 count13.add(cty);
             }
@@ -547,7 +547,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count14.add(cty);
             }
             return count14;
@@ -579,7 +579,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count15.add(cty);
             }
             return count15;
@@ -612,7 +612,7 @@ public class App
                 c.setName(rset.getString("Name"));
                 c.setCountry(rset.getString("CountryCode"));
                 c.setDistrict(rset.getString("District"));
-                c.setPopulation(rset.getString("Population"));
+                c.setPopulation(rset.getInt("Population"));
                 return c;
             }
             else
@@ -658,6 +658,7 @@ public class App
             System.out.println(city_string);
         }
     }
+
     public static void main(String[] args)
     {
         // Create new Application
@@ -675,38 +676,39 @@ public class App
 
         // Get country
 
-        ArrayList<Country> count = a.getCountry();
-        a.displayCountry(count);
-        ArrayList<Country> count1 = a.getCountryContinent();
-        a.displayCountry(count1);
-        ArrayList<Country> count2 = a.getCountryRegion();
-        a.displayCountry(count2);
-        ArrayList<Country> count3 = a.getCountryLimit10();
-        a.displayCountry(count3);
-        ArrayList<Country> count4 = a.getCountryContinentLimit10();
-        a.displayCountry(count4);
-        ArrayList<Country> count5 = a.getCountryRegionLimit10();
-        a.displayCountry(count5);
-        ArrayList<City> count6 = a.getCity();
-        a.displayCity(count6);
-        ArrayList<City> count7 = a.getCityContinent();
-        a.displayCity(count7);
-        ArrayList<City> count8 = a.getCityRegion();
-        a.displayCity(count8);
-        ArrayList<City> count9 = a.getCityCountry();
-        a.displayCity(count9);
-        ArrayList<City> count10 = a.getCityDistrict();
-        a.displayCity(count10);
-        ArrayList<City> count11 = a.getCityLimit10();
-        a.displayCity(count11);
-        ArrayList<City> count12 = a.getCityContinentLimit10();
-        a.displayCity(count12);
-        ArrayList<City> count13 = a.getCityRegionLimit10();
-        a.displayCity(count13);
-        ArrayList<City> count14 = a.getCityCountryLimit10();
-        a.displayCity(count14);
-        ArrayList<City> count15 = a.getCityDistrictLimit10();
-        a.displayCity(count15);
+        //ArrayList<Country> count = a.getCountry();
+        //a.displayCountry(count);
+        //ArrayList<Country> count1 = a.getCountryContinent();
+        //a.displayCountry(count1);
+        //ArrayList<Country> count2 = a.getCountryRegion();
+        //a.displayCountry(count2);
+        //ArrayList<Country> count3 = a.getCountryLimit10();
+        //a.displayCountry(count3);
+        //ArrayList<Country> count4 = a.getCountryContinentLimit10();
+        //a.displayCountry(count4);
+        //ArrayList<Country> count5 = a.getCountryRegionLimit10();
+        //a.displayCountry(count5);
+        //ArrayList<City> count6 = a.getCity();
+        //a.displayCity(count6);
+        //ArrayList<City> count7 = a.getCityContinent();
+        //a.displayCity(count7);
+        //ArrayList<City> count8 = a.getCityRegion();
+        //a.displayCity(count8);
+        //ArrayList<City> count9 = a.getCityCountry();
+        //a.displayCity(count9);
+        //ArrayList<City> count10 = a.getCityDistrict();
+        //a.displayCity(count10);
+        //ArrayList<City> count11 = a.getCityLimit10();
+        //a.displayCity(count11);
+        //ArrayList<City> count12 = a.getCityContinentLimit10();
+        //a.displayCity(count12);
+        //ArrayList<City> count13 = a.getCityRegionLimit10();
+        //a.displayCity(count13);
+        //ArrayList<City> count14 = a.getCityCountryLimit10();
+        //a.displayCity(count14);
+        //ArrayList<City> count15 = a.getCityDistrictLimit10();
+        //a.displayCity(count15);
+
         // Display results
         // Disconnect from database
         a.disconnect();

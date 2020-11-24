@@ -4,9 +4,29 @@ public class City {
     private String name;
     private String country;
     private String District;
-    private String Population;
+    private int Population;
     private String Region;
     private String Continent;
+    private int totalPopulation;
+    private int notLiving;
+
+    public int getTotalPopulation() {
+        return totalPopulation;
+    }
+
+    public int setTotalPopulation(int totalPopulation) {
+        this.totalPopulation = totalPopulation;
+        return totalPopulation;
+    }
+
+    public int getNotLiving() {
+        return notLiving;
+    }
+
+    public void setNotLiving(int notLiving) {
+        this.notLiving = notLiving;
+    }
+
 
     public String getContinent() {
         return Continent;
@@ -48,11 +68,12 @@ public class City {
         District = district;
     }
 
-    public String getPopulation() {
+    public int getPopulation() {
         return Population;
     }
 
-    public void setPopulation(String population) {
+    public int setPopulation(int population) {
         Population = population;
+        return population;
     }
 }
