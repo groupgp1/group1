@@ -687,6 +687,38 @@ public class App
         return null;
     }
 
+    public ArrayList<City> getCapitalCitiesLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated capital cities in the world");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Region,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count19 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count19.add(c);
+            }
+            return count19;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public City getCity(String name)
     {
         try
@@ -826,6 +858,8 @@ public class App
         //a.displayCapital(count17);
         ArrayList<City> count18 = a.getCapitalCitiesRegion();
         a.displayCapital(count18);
+        ArrayList<City> count19 = a.getCapitalCitiesLimit10();
+        a.displayCapital(count19);
         // Display results
         // Disconnect from database
         a.disconnect();
