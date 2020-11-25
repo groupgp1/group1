@@ -719,6 +719,38 @@ public class App
         return null;
     }
 
+    public ArrayList<City> getCapitalCitiesContinentLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated capital cities in a continent");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Continent,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code and country.Continent = 'Asia' limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count20 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count20.add(c);
+            }
+            return count20;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public City getCity(String name)
     {
         try
@@ -856,10 +888,12 @@ public class App
         //a.displayCapital(count16);
         //ArrayList<City> count17 = a.getCapitalCitiesContinent();
         //a.displayCapital(count17);
-        ArrayList<City> count18 = a.getCapitalCitiesRegion();
-        a.displayCapital(count18);
-        ArrayList<City> count19 = a.getCapitalCitiesLimit10();
-        a.displayCapital(count19);
+        //ArrayList<City> count18 = a.getCapitalCitiesRegion();
+        //a.displayCapital(count18);
+        //ArrayList<City> count19 = a.getCapitalCitiesLimit10();
+        //a.displayCapital(count19);
+        ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
+        a.displayCapital(count20);
         // Display results
         // Disconnect from database
         a.disconnect();
