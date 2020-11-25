@@ -591,6 +591,37 @@ public class App
         }
         return null;
     }
+    public ArrayList<City> getCapitalCities()
+    {
+        try
+        {
+            System.out.println("All the capital cities in the world organised by largest population to smallest.");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count16 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count16.add(c);
+            }
+            return count16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public City getCity(String name)
     {
         try
@@ -659,6 +690,21 @@ public class App
         }
     }
 
+    public void displayCapital(ArrayList<City> cities)
+    {
+        if (cities == null){
+            System.out.println("No Cities");
+            return;
+        }
+        System.out.println(String.format("%-20s %-20s %-20s", "Name", "Country", "Population"));
+        for(City c: cities)
+        {
+            if (c == null)
+                continue;
+            String city_string = String.format("%-20s %-20s %-20s", c.getName(),c.getCountry(),c.getPopulation());
+            System.out.println(city_string);
+        }
+    }
     public static void main(String[] args)
     {
         // Create new Application
@@ -709,6 +755,8 @@ public class App
         //ArrayList<City> count15 = a.getCityDistrictLimit10();
         //a.displayCity(count15);
 
+        ArrayList<City> count15 = a.getCapitalCities();
+        a.displayCapital(count15);
         // Display results
         // Disconnect from database
         a.disconnect();
