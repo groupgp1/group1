@@ -622,6 +622,39 @@ public class App
         }
         return null;
     }
+
+    public ArrayList<City> getCapitalCitiesContinent()
+    {
+        try
+        {
+            System.out.println("All the capital cities in a continent organised by largest population to smallest.");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Continent,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code and country.Continent = 'Asia' order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count17 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count17.add(c);
+            }
+            return count17;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public City getCity(String name)
     {
         try
@@ -755,8 +788,10 @@ public class App
         //ArrayList<City> count15 = a.getCityDistrictLimit10();
         //a.displayCity(count15);
 
-        ArrayList<City> count15 = a.getCapitalCities();
-        a.displayCapital(count15);
+        //ArrayList<City> count16 = a.getCapitalCities();
+        //a.displayCapital(count16);
+        ArrayList<City> count17 = a.getCapitalCities();
+        a.displayCapital(count17);
         // Display results
         // Disconnect from database
         a.disconnect();
