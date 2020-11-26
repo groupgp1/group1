@@ -82,7 +82,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count.add(cty);
             }
@@ -117,7 +117,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count1.add(cty);
             }
@@ -152,7 +152,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count2.add(cty);
             }
@@ -188,7 +188,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count3.add(cty);
             }
@@ -223,7 +223,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count4.add(cty);
             }
@@ -258,7 +258,7 @@ public class App
                 cty.name = rset.getString("Name");
                 cty.continent= rset.getString("Continent");
                 cty.region = rset.getString("Region");
-                cty.population = rset.getInt("Population");
+                cty.population = rset.getString("Population");
                 cty.capital = rset.getInt("Capital");
                 count5.add(cty);
             }
@@ -288,7 +288,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count6.add(cty);
             }
             return count6;
@@ -300,7 +300,7 @@ public class App
         }
         return null;
     }
-    
+
     public ArrayList<City> getCityContinent()
     {
         try
@@ -321,7 +321,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count7.add(cty);
             }
             return count7;
@@ -354,7 +354,8 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
+                cty.setRegion(rset.getString("country.Region"));
                 count8.add(cty);
             }
             return count8;
@@ -387,7 +388,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count9.add(cty);
             }
             return count9;
@@ -419,7 +420,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count10.add(cty);
             }
             return count10;
@@ -450,7 +451,7 @@ public class App
                 cty.setName(rset.getString("Name"));
                 cty.setCountry(rset.getString("CountryCode"));
                 cty.setDistrict(rset.getString("District"));
-                cty.setPopulation(rset.getString("population"));
+                cty.setPopulation(rset.getInt("population"));
                 count11.add(cty);
             }
             return count11;
@@ -462,6 +463,294 @@ public class App
         }
         return null;
     }
+    public ArrayList<City> getCityContinentLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated cities in a continent");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code, country.continent from city, country WHERE country.Continent = 'Asia' and CountryCode = country.Code limit 10 ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count12 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getInt("population"));
+                count12.add(cty);
+            }
+            return count12;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityRegionLimit10()
+    {
+        try
+        {
+            System.out.println("top 10 populated cities in a Region");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code, country.Region from city, country " +
+                            "WHERE country.Region = 'Caribbean' and CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count13 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getInt("population"));
+                cty.setRegion(rset.getString("country.Region"));
+                count13.add(cty);
+            }
+            return count13;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityCountryLimit10()
+    {
+        try
+        {
+            System.out.println("top 10 populated cities in a country");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
+                            "WHERE CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count14 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getInt("population"));
+                count14.add(cty);
+            }
+            return count14;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCityDistrictLimit10()
+    {
+        try
+        {
+            System.out.println("Top 10 populated cities in a district");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
+                            "WHERE District = 'Gelderland' limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count15 = new ArrayList<>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("Name"));
+                cty.setCountry(rset.getString("CountryCode"));
+                cty.setDistrict(rset.getString("District"));
+                cty.setPopulation(rset.getInt("population"));
+                count15.add(cty);
+            }
+            return count15;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getCapitalCities()
+    {
+        try
+        {
+            System.out.println("All the capital cities in the world organised by largest population to smallest.");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count16 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count16.add(c);
+            }
+            return count16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public ArrayList<City> getCapitalCitiesContinent()
+    {
+        try
+        {
+            System.out.println("All the capital cities in a continent organised by largest population to smallest.");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Continent,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code and country.Continent = 'Asia' order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count17 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count17.add(c);
+            }
+            return count17;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public ArrayList<City> getCapitalCitiesRegion()
+    {
+        try
+        {
+            System.out.println("All the capital cities in a region organised by largest to smallest");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Region,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code and country.Region = 'Caribbean' order by Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count18 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count18.add(c);
+            }
+            return count18;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public ArrayList<City> getCapitalCitiesLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated capital cities in the world");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Region,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count19 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count19.add(c);
+            }
+            return count19;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public ArrayList<City> getCapitalCitiesContinentLimit10()
+    {
+        try
+        {
+            System.out.println("The top 10 populated capital cities in a continent");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID,country.Capital,city.Name,country.Code,city.CountryCode,country.Name,country.Continent,city.Population from city, country Where" +
+                            " country.Capital = city.ID and city.CountryCode = country.Code and country.Continent = 'Asia' limit 10";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> count20 = new ArrayList<>();
+            while (rset.next())
+            {
+                City c = new City();
+                c.setName(rset.getString("city.Name"));
+                c.setCountry(rset.getString("country.Name"));
+                c.setPopulation(rset.getInt("city.Population"));
+                count20.add(c);
+            }
+            return count20;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public City getCity(String name)
     {
         try
@@ -483,7 +772,7 @@ public class App
                 c.setName(rset.getString("Name"));
                 c.setCountry(rset.getString("CountryCode"));
                 c.setDistrict(rset.getString("District"));
-                c.setPopulation(rset.getString("Population"));
+                c.setPopulation(rset.getInt("Population"));
                 return c;
             }
             else
@@ -529,6 +818,22 @@ public class App
             System.out.println(city_string);
         }
     }
+
+    public void displayCapital(ArrayList<City> cities)
+    {
+        if (cities == null){
+            System.out.println("No Cities");
+            return;
+        }
+        System.out.println(String.format("%-20s %-20s %-20s", "Name", "Country", "Population"));
+        for(City c: cities)
+        {
+            if (c == null)
+                continue;
+            String city_string = String.format("%-20s %-20s %-20s", c.getName(),c.getCountry(),c.getPopulation());
+            System.out.println(city_string);
+        }
+    }
     public static void main(String[] args)
     {
         // Create new Application
@@ -568,10 +873,27 @@ public class App
         //a.displayCity(count9);
         //ArrayList<City> count10 = a.getCityDistrict();
         //a.displayCity(count10);
-        ArrayList<City> count11 = a.getCityLimit10();
-        a.displayCity(count11);
-        City c = a.getCity("Tilburg");
-        System.out.println(c);
+        //ArrayList<City> count11 = a.getCityLimit10();
+        //a.displayCity(count11);
+        //ArrayList<City> count12 = a.getCityContinentLimit10();
+        //a.displayCity(count12);
+        //ArrayList<City> count13 = a.getCityRegionLimit10();
+        //a.displayCity(count13);
+        //ArrayList<City> count14 = a.getCityCountryLimit10();
+        //a.displayCity(count14);
+        //ArrayList<City> count15 = a.getCityDistrictLimit10();
+        //a.displayCity(count15);
+
+        //ArrayList<City> count16 = a.getCapitalCities();
+        //a.displayCapital(count16);
+        //ArrayList<City> count17 = a.getCapitalCitiesContinent();
+        //a.displayCapital(count17);
+        //ArrayList<City> count18 = a.getCapitalCitiesRegion();
+        //a.displayCapital(count18);
+        //ArrayList<City> count19 = a.getCapitalCitiesLimit10();
+        //a.displayCapital(count19);
+        ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
+        a.displayCapital(count20);
         // Display results
         // Disconnect from database
         a.disconnect();

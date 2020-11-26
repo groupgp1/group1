@@ -3,46 +3,79 @@
 actor user as "User"
 
 rectangle Database
+left to right direction
 
 rectangle "World Report System" {
 
-    usecase UCa as "GetAllCountry"
-    usecase UC3 as "DisplayAllCountry"
-    usecase UC2 as "GetAllCity"
-    usecase UC1 as "DisplayAllCity"
-    usecase UC4 as "GetCountryWithContinent"
-    usecase UC5 as "GetCountryWithRegion"
-    usecase UC6 as "GetTop10Countries"
-    usecase UC7 as "GetTop10CountriesWithContinent"
-    usecase UC8 as "GetTop10CountriesWithRegion"
-    usecase UC9 as "GetCityWithContinent"
+    usecase UC1 as "GetAllCountry"
+    usecase UCa as "DisplayAllCountry"
+    usecase UCb as "DisplayAllCity"
+    usecase UC2 as "GetCountryWithContinent"
+    usecase UC3 as "GetCountryWithRegion"
+    usecase UC4 as "GetTop10Countries"
+    usecase UC5 as "GetTop10CountriesWithContinent"
+    usecase UC6 as "GetTop10CountriesWithRegion"
+    usecase UC7 as "GetAllCity"
+    usecase UC8 as "GetCityWithContinent"
+    usecase UC9 as "GetCityWithRegion"
+    usecase UC10 as "GetCityWithCountry"
+    usecase UC11 as "GetCityWithLimit10"
+    usecase UC12 as "GetCityWithDistrict"
+    usecase UC13 as "Get10CitiesWithCountry"
+    usecase UC14 as "Get10CitiesWithRegion"
+    usecase UC15 as "Get10CitiesWithContinent"
+    usecase UC16 as "Get10CitiesWithDistrict"
 
-    user - UC4
-    user - UCa
+    user - UC1
     user - UC2
+    user - UC3
+    user - UC4
     user - UC5
     user - UC6
     user - UC7
     user - UC8
     user - UC9
+    user - UC10
+    user - UC11
+    user - UC12
+    user - UC13
+    user - UC14
+    user - UC15
+    user - UC16
 
-    UCa ..> UC3 : include
-    UC2 ..> UC1 : include
-    UC4 ..> UC3 : include
-    UC5 ..> UC3 : include
-    UC6 ..> UC3 : include
-    UC7 ..> UC3 : include
-    UC8 ..> UC3 : include
-    UC9 ..> UC1 : include
+    UC1 ..> UCa : include
+    UC2 ..> UCa : include
+    UC3 ..> UCa : include
+    UC4 ..> UCa : include
+    UC5 ..> UCa : include
+    UC6 ..> UCa : include
+    UC7 ..> UCb : include
+    UC8 ..> UCb : include
+    UC9 ..> UCb : include
+    UC10 ..> UCb : include
+    UC11 ..> UCb : include
+    UC12 ..> UCb : include
+    UC13 ..> UCb : include
+    UC14 ..> UCb : include
+    UC15 ..> UCb : include
+    UC16 ..> UCb : include
 
-    UCa - Database
-    UC4 - Database
+    UC1 - Database
     UC2 - Database
+    UC3 - Database
+    UC4 - Database
     UC5 - Database
     UC6 - Database
     UC7 - Database
     UC8 - Database
     UC9 - Database
+    UC10 - Database
+    UC11 - Database
+    UC12 - Database
+    UC13 - Database
+    UC14 - Database
+    UC15 - Database
+    UC16 - Database
 
 }
 
