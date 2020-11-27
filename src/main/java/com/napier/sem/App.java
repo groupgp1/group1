@@ -1072,11 +1072,11 @@ public class App
         //a.displayCapital(count18);
         //ArrayList<City> count19 = a.getCapitalCitiesLimit10();
         //a.displayCapital(count19);
-        ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
-        a.displayCapital(count20);
-        ArrayList<City> count21 = a.getCapitalCitiesRegionLimit10();
-        a.displayCapital(count21);
-        a.getPopulationRegion();
+        //ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
+        //a.displayCapital(count20);
+        //ArrayList<City> count21 = a.getCapitalCitiesRegionLimit10();
+        //a.displayCapital(count21);
+        //a.getPopulationRegion();
         a.getPopulationContinent();
         // Display results
         // Disconnect from database
