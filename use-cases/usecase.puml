@@ -25,6 +25,18 @@ rectangle "World Report System" {
     usecase UC14 as "Get10CitiesWithRegion"
     usecase UC15 as "Get10CitiesWithContinent"
     usecase UC16 as "Get10CitiesWithDistrict"
+    usecase UC17 as "GetCapitalCities"
+    usecase UCc as "displayCapitalCities"
+    usecase UC18 as "GetCapitalCitiesWithContinent"
+    usecase UC19 as "GetCapitalCitiesWithRegion"
+    usecase UC20 as "get10CapitalCities"
+    usecase UC21 as "get10CapitalCitiesContinent"
+    usecase UC22 as "get10CapitalCitiesRegion"
+    usecase UCd as "displayPopulation"
+    usecase UCe as "getRegion"
+    usecase UCf as "getContinent"
+    usecase UC23 as "getPopulationWithContinent"
+    usecase UC24 as "getPopulationWithRegion"
 
     user - UC1
     user - UC2
@@ -42,6 +54,14 @@ rectangle "World Report System" {
     user - UC14
     user - UC15
     user - UC16
+    user - UC17
+    user - UC18
+    user - UC19
+    user - UC20
+    user - UC21
+    user - UC22
+    user - UC23
+    user - UC24
 
     UC1 ..> UCa : include
     UC2 ..> UCa : include
@@ -59,6 +79,16 @@ rectangle "World Report System" {
     UC14 ..> UCb : include
     UC15 ..> UCb : include
     UC16 ..> UCb : include
+    UC17 ..> UCc : include
+    UC18 ..> UCc : include
+    UC19 ..> UCc : include
+    UC20 ..> UCc : include
+    UC21 ..> UCc : include
+    UC22 ..> UCc : include
+    UC23 ..> UCd : include
+    UC24 ..> UCd : include
+    UC23 ..> UCf : include
+    UC24 ..> UCe : include
 
     UC1 - Database
     UC2 - Database
@@ -76,6 +106,15 @@ rectangle "World Report System" {
     UC14 - Database
     UC15 - Database
     UC16 - Database
+    UC17 - Database
+    UC18 - Database
+    UC19 - Database
+    UC20 - Database
+    UC21 - Database
+    UC22 - Database
+    UC23 - Database
+    UC24 - Database
+
 
 }
 
