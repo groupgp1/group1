@@ -809,6 +809,70 @@ public class App
         }
         return null;
     }
+    public ArrayList<Country> getContinent(){
+        try
+        {
+            System.out.println("Get Continent");
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT DISTINCT Continent FROM country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> count22 = new ArrayList<>();
+            while (rset.next())
+            {
+                Country c = new Country();
+                c.setContinent(rset.getString("Continent"));
+                count22.add(c);
+            }
+            return count22;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public ArrayList<City> getPopulationContinent()
+    {
+        try
+        {
+            System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
+            // Create an SQL statement
+            ArrayList<Country> continentList = getContinent();
+            for (Country r: continentList){
+                String continent = r.getContinent();
+                System.out.println(continent);
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT city.Population, city.Name, country.Population, country.Code, city.CountryCode, country.Continent FROM city, country WHERE country.Code = city.CountryCode and country.Continent = continent" ;
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                ArrayList<City> count23 = new ArrayList<>();
+                while (rset.next())
+                {
+                    City cty = new City();
+                    cty.setName(rset.getString("city.Name"));
+                    int pop = cty.setPopulation(rset.getInt("city.Population"));
+                    int tPop = cty.setTotalPopulation(rset.getInt("country.Population"));
+                    int notLiving = tPop - pop;
+                    cty.setNotLiving(notLiving);
+                    count23.add(cty);
+                }
+                displayPopulation(count23);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
     public ArrayList<City> getPopulationRegion()
     {
         try
@@ -846,6 +910,7 @@ public class App
         }
         return null;
     }
+
     public void displayPopulation(ArrayList<City> cities)
     {
         if (cities == null){
@@ -1012,6 +1077,7 @@ public class App
         ArrayList<City> count21 = a.getCapitalCitiesRegionLimit10();
         a.displayCapital(count21);
         a.getPopulationRegion();
+        a.getPopulationContinent();
         // Display results
         // Disconnect from database
         a.disconnect();
