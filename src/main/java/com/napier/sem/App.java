@@ -792,7 +792,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT SUM(city.Population) as cityPopulation, SUM(country.Population) as countryPopulation, country.Continent FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Continent" ;
+                    "SELECT SUM(city.Population) as cityPopulation, SUM(DISTINCT country.Population) as countryPopulation, country.Continent FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Continent" ;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             while (rset.next())
@@ -825,7 +825,7 @@ public class App
             Statement stmt = con.createStatement();
 
             String strSelect =
-                    "SELECT SUM(city.Population) as cityPopulation, SUM(country.Population) as countryPopulation, country.Region FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Region" ;
+                    "SELECT SUM(city.Population) as cityPopulation, SUM(DISTINCT country.Population) as countryPopulation, country.Region FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Region" ;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             while (rset.next())
