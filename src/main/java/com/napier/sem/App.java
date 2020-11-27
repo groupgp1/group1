@@ -782,89 +782,31 @@ public class App
         }
         return null;
     }
-    public ArrayList<Country> getRegion(){
-        try
-        {
-            System.out.println("Get Region");
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT DISTINCT Region FROM country";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<Country> count21 = new ArrayList<>();
-            while (rset.next())
-            {
-                Country c = new Country();
-                c.setRegion(rset.getString("Region"));
-                count21.add(c);
-            }
-            return count21;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get world details");
-        }
-        return null;
-    }
-    public ArrayList<Country> getContinent(){
-        try
-        {
-            System.out.println("Get Continent");
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT DISTINCT Continent FROM country";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<Country> count22 = new ArrayList<>();
-            while (rset.next())
-            {
-                Country c = new Country();
-                c.setContinent(rset.getString("Continent"));
-                count22.add(c);
-            }
-            return count22;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get world details");
-        }
-        return null;
-    }
     public ArrayList<City> getPopulationContinent()
     {
         try
         {
             System.out.println("The population of people, people living in cities, and people not living in cities in each continent.");
             // Create an SQL statement
-            ArrayList<Country> continentList = getContinent();
-            for (Country r: continentList){
-                String continent = r.getContinent();
-                System.out.println(continent);
-                Statement stmt = con.createStatement();
-                // Create string for SQL statement
-                String strSelect =
-                        "SELECT city.Population, city.Name, country.Population, country.Code, city.CountryCode, country.Continent FROM city, country WHERE country.Code = city.CountryCode and country.Continent = continent" ;
-                // Execute SQL statement
-                ResultSet rset = stmt.executeQuery(strSelect);
-                ArrayList<City> count23 = new ArrayList<>();
-                while (rset.next())
-                {
-                    City cty = new City();
-                    cty.setName(rset.getString("city.Name"));
-                    int pop = cty.setPopulation(rset.getInt("city.Population"));
-                    int tPop = cty.setTotalPopulation(rset.getInt("country.Population"));
-                    int notLiving = tPop - pop;
-                    cty.setNotLiving(notLiving);
-                    count23.add(cty);
-                }
-                displayPopulation(count23);
+            ArrayList<City> count23 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(city.Population) as cityPopulation, SUM(country.Population) as countryPopulation, country.Continent FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Continent" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("country.Continent"));
+                cty.setName(rset.getString("country.Continent"));
+                Long pop = cty.setCityPopulation(rset.getLong("cityPopulation"));
+                long tPop = cty.setTotalPopulation(rset.getLong("countryPopulation"));
+                long notLiving = tPop - pop;
+                cty.setNotLiving(notLiving);
+                count23.add(cty);
             }
+            return count23;
         }
         catch (Exception e)
         {
@@ -879,29 +821,24 @@ public class App
         {
             System.out.println("The population of people, people living in cities, and people not living in cities in each region");
             // Create an SQL statement
-            ArrayList<Country> regionList = getRegion();
-            for (Country r: regionList){
-                String Region = r.getRegion();
-                System.out.println(Region);
-                Statement stmt = con.createStatement();
-                // Create string for SQL statement
-                String strSelect =
-                        "SELECT city.Population, city.Name, country.Population, country.Code, city.CountryCode, country.Region FROM city, country WHERE country.Code = city.CountryCode and country.Region = Region" ;
-                // Execute SQL statement
-                ResultSet rset = stmt.executeQuery(strSelect);
-                ArrayList<City> count21 = new ArrayList<>();
-                while (rset.next())
-                {
-                    City cty = new City();
-                    cty.setName(rset.getString("city.Name"));
-                    int pop = cty.setPopulation(rset.getInt("city.Population"));
-                    int tPop = cty.setTotalPopulation(rset.getInt("country.Population"));
-                    int notLiving = tPop - pop;
-                    cty.setNotLiving(notLiving);
-                    count21.add(cty);
-                }
-                displayPopulation(count21);
+            ArrayList<City> count21 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT SUM(city.Population) as cityPopulation, SUM(country.Population) as countryPopulation, country.Region FROM city, country WHERE country.Code IN (SELECT Code FROM country) GROUP BY country.Region" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("country.Region"));
+                Long pop = cty.setCityPopulation(rset.getLong("cityPopulation"));
+                long tPop = cty.setTotalPopulation(rset.getLong("countryPopulation"));
+                long notLiving = tPop - pop;
+                cty.setNotLiving(notLiving);
+                count21.add(cty);
             }
+            return count21;
         }
         catch (Exception e)
         {
@@ -922,8 +859,8 @@ public class App
         {
             if (c == null)
                 continue;
-            int tPop = c.getTotalPopulation();
-            double living = c.getPopulation();
+            long tPop = c.getTotalPopulation();
+            double living = c.getCityPopulation();
             double livingPercentage = living / tPop;
             livingPercentage = livingPercentage * 100;
             double notLivingPercentage = 100 - livingPercentage;
@@ -1031,53 +968,54 @@ public class App
 
         // Get country
 
-        //ArrayList<Country> count = a.getCountry();
-        //a.displayCountry(count);
-        //ArrayList<Country> count1 = a.getCountryContinent();
-        //a.displayCountry(count1);
-        //ArrayList<Country> count2 = a.getCountryRegion();
-        //a.displayCountry(count2);
-        //ArrayList<Country> count3 = a.getCountryLimit10();
-        //a.displayCountry(count3);
-        //ArrayList<Country> count4 = a.getCountryContinentLimit10();
-        //a.displayCountry(count4);
-        //ArrayList<Country> count5 = a.getCountryRegionLimit10();
-        //a.displayCountry(count5);
-        //ArrayList<City> count6 = a.getCity();
-        //a.displayCity(count6);
-        //ArrayList<City> count7 = a.getCityContinent();
-        //a.displayCity(count7);
-        //ArrayList<City> count8 = a.getCityRegion();
-        //a.displayCity(count8);
-        //ArrayList<City> count9 = a.getCityCountry();
-        //a.displayCity(count9);
-        //ArrayList<City> count10 = a.getCityDistrict();
-        //a.displayCity(count10);
-        //ArrayList<City> count11 = a.getCityLimit10();
-        //a.displayCity(count11);
-        //ArrayList<City> count12 = a.getCityContinentLimit10();
-        //a.displayCity(count12);
-        //ArrayList<City> count13 = a.getCityRegionLimit10();
-        //a.displayCity(count13);
-        //ArrayList<City> count14 = a.getCityCountryLimit10();
-        //a.displayCity(count14);
-        //ArrayList<City> count15 = a.getCityDistrictLimit10();
-        //a.displayCity(count15);
-
-        //ArrayList<City> count16 = a.getCapitalCities();
-        //a.displayCapital(count16);
-        //ArrayList<City> count17 = a.getCapitalCitiesContinent();
-        //a.displayCapital(count17);
-        //ArrayList<City> count18 = a.getCapitalCitiesRegion();
-        //a.displayCapital(count18);
-        //ArrayList<City> count19 = a.getCapitalCitiesLimit10();
-        //a.displayCapital(count19);
-        //ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
-        //a.displayCapital(count20);
-        //ArrayList<City> count21 = a.getCapitalCitiesRegionLimit10();
-        //a.displayCapital(count21);
-        //a.getPopulationRegion();
-        a.getPopulationContinent();
+        ArrayList<Country> count = a.getCountry();
+        a.displayCountry(count);
+        ArrayList<Country> count1 = a.getCountryContinent();
+        a.displayCountry(count1);
+        ArrayList<Country> count2 = a.getCountryRegion();
+        a.displayCountry(count2);
+        ArrayList<Country> count3 = a.getCountryLimit10();
+        a.displayCountry(count3);
+        ArrayList<Country> count4 = a.getCountryContinentLimit10();
+        a.displayCountry(count4);
+        ArrayList<Country> count5 = a.getCountryRegionLimit10();
+        a.displayCountry(count5);
+        ArrayList<City> count6 = a.getCity();
+        a.displayCity(count6);
+        ArrayList<City> count7 = a.getCityContinent();
+        a.displayCity(count7);
+        ArrayList<City> count8 = a.getCityRegion();
+        a.displayCity(count8);
+        ArrayList<City> count9 = a.getCityCountry();
+        a.displayCity(count9);
+        ArrayList<City> count10 = a.getCityDistrict();
+        a.displayCity(count10);
+        ArrayList<City> count11 = a.getCityLimit10();
+        a.displayCity(count11);
+        ArrayList<City> count12 = a.getCityContinentLimit10();
+        a.displayCity(count12);
+        ArrayList<City> count13 = a.getCityRegionLimit10();
+        a.displayCity(count13);
+        ArrayList<City> count14 = a.getCityCountryLimit10();
+        a.displayCity(count14);
+        ArrayList<City> count15 = a.getCityDistrictLimit10();
+        a.displayCity(count15);
+        ArrayList<City> count16 = a.getCapitalCities();
+        a.displayCapital(count16);
+        ArrayList<City> count17 = a.getCapitalCitiesContinent();
+        a.displayCapital(count17);
+        ArrayList<City> count18 = a.getCapitalCitiesRegion();
+        a.displayCapital(count18);
+        ArrayList<City> count19 = a.getCapitalCitiesLimit10();
+        a.displayCapital(count19);
+        ArrayList<City> count20 = a.getCapitalCitiesContinentLimit10();
+        a.displayCapital(count20);
+        ArrayList<City> count21 = a.getCapitalCitiesRegionLimit10();
+        a.displayCapital(count21);
+        ArrayList<City> count22 = a.getPopulationRegion();
+        a.displayPopulation(count22);
+        ArrayList<City> count23 = a.getPopulationContinent();
+        a.displayPopulation(count23);
         // Display results
         // Disconnect from database
         a.disconnect();

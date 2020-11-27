@@ -7,23 +7,33 @@ public class City {
     private int Population;
     private String Region;
     private String Continent;
-    private int totalPopulation;
-    private int notLiving;
+    private long totalPopulation;
+    private long notLiving;
+    private Long cityPopulation;
 
-    public int getTotalPopulation() {
+    public Long getCityPopulation() {
+        return cityPopulation;
+    }
+
+    public Long setCityPopulation(Long cityPopulation) {
+        this.cityPopulation = cityPopulation;
+        return cityPopulation;
+    }
+
+    public long getTotalPopulation() {
         return totalPopulation;
     }
 
-    public int setTotalPopulation(int totalPopulation) {
+    public long setTotalPopulation(long totalPopulation) {
         this.totalPopulation = totalPopulation;
         return totalPopulation;
     }
 
-    public int getNotLiving() {
+    public long getNotLiving() {
         return notLiving;
     }
 
-    public void setNotLiving(int notLiving) {
+    public void setNotLiving(long notLiving) {
         this.notLiving = notLiving;
     }
 

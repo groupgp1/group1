@@ -33,8 +33,6 @@ rectangle "World Report System" {
     usecase UC21 as "get10CapitalCitiesContinent"
     usecase UC22 as "get10CapitalCitiesRegion"
     usecase UCd as "displayPopulation"
-    usecase UCe as "getRegion"
-    usecase UCf as "getContinent"
     usecase UC23 as "getPopulationWithContinent"
     usecase UC24 as "getPopulationWithRegion"
 
@@ -87,8 +85,6 @@ rectangle "World Report System" {
     UC22 ..> UCc : include
     UC23 ..> UCd : include
     UC24 ..> UCd : include
-    UC23 ..> UCf : include
-    UC24 ..> UCe : include
 
     UC1 - Database
     UC2 - Database
