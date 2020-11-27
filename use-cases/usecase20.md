@@ -1,7 +1,7 @@
-### USE CASE: 16 top N populated cities in a district where N is provided by the user
+### USE CASE: 20 The top N populated capital cities in the world where N is provided by the user.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want the top N populated cities in a district where N is provided by the user so that I can know exact top N populated cities in a district where N is provided by the user.
+As a user I want the top N populated capital cities in the world where N is provided by the user so that I can know exact top N populated capital cities in the world where N is provided by the user. 
 
 Scope
 World.
@@ -13,7 +13,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about top 10 cities filtered with a district.
+A report is available for users who want to know about top 10 capital cities in a world.
 
 Failed End Condition
 No report is produced.
@@ -25,7 +25,7 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of the top 10 cities filtered with one district.
+User requests information of the top 10 cities around the world.
 User captures information of the cities around the world. 
 EXTENSIONS
 Role does not exist:
