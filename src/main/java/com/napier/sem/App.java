@@ -848,6 +848,39 @@ public class App
         return null;
     }
 
+    public ArrayList<City> getPopulationCountry()
+    {
+        try
+        {
+            System.out.println("The population of people, people living in cities, and people not living in cities in each country");
+            // Create an SQL statement
+            ArrayList<City> count21 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT SUM(city.Population) as cityPopulation, SUM(DISTINCT country.Population) as countryPopulation, country.Name FROM city, country WHERE country.Code= city.CountryCode GROUP BY country.Name" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.setName(rset.getString("country.Name"));
+                long pop = cty.setCityPopulation(rset.getLong("cityPopulation"));
+                long tPop = cty.setTotalPopulation(rset.getLong("countryPopulation"));
+                long notLiving = tPop - pop;
+                cty.setNotLiving(notLiving);
+                count21.add(cty);
+            }
+            return count21;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
     public void displayPopulation(ArrayList<City> cities)
     {
         if (cities == null){
@@ -1016,6 +1049,8 @@ public class App
         a.displayPopulation(count22);
         ArrayList<City> count23 = a.getPopulationContinent();
         a.displayPopulation(count23);
+        ArrayList<City> count24 = a.getPopulationCountry();
+        a.displayPopulation(count24);
         // Display results
         // Disconnect from database
         a.disconnect();
