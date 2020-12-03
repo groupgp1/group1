@@ -995,6 +995,49 @@ public class App
         }
     }
 
+    public ArrayList<Country> getCountryPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            ArrayList<Country> count27 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT population FROM country WHERE Code='ABW'" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                Country c = new Country();
+                c.setPopulation(rset.getString("population"));
+                count27.add(c);
+            }
+            return count27;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public void displayCountryPopulation(ArrayList<Country> country)
+    {
+        if (country == null){
+            System.out.println("No Population");
+            return;
+        }
+        for(Country c: country)
+        {
+            if (c == null)
+                continue;
+
+            System.out.println("The Population of a Country is "+ c.getPopulation());
+        }
+    }
+
     public void displayContinent(ArrayList<Country> country)
     {
         if (country == null){
@@ -1185,6 +1228,8 @@ public class App
         a.displayContinent(count26);
         ArrayList<Country> count27 = a.getRegionPopulation();
         a.displayRegion(count27);
+        ArrayList<Country> count28 = a.getCountryPopulation();
+        a.displayCountryPopulation(count28);
         // Display results
         // Disconnect from database
         a.disconnect();
