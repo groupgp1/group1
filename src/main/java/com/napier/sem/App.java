@@ -924,6 +924,47 @@ public class App
         }
     }
 
+    public ArrayList<Country> getContinentPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            ArrayList<Country> count26 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT SUM(country.Population) as countryPopulation FROM country WHERE Continent = 'Asia'" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                Country c = new Country();
+                c.setPopulation(rset.getString("countryPopulation"));
+                count26.add(c);
+            }
+            return count26;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public void displayContinent(ArrayList<Country> country)
+    {
+        if (country == null){
+            System.out.println("No Population");
+            return;
+        }
+        for(Country c: country)
+        {
+            if (c == null)
+                continue;
+
+            System.out.println("The Population of the Continent is "+c.getPopulation());
+        }
+    }
     public void displayPopulation(ArrayList<City> cities)
     {
         if (cities == null){
@@ -1096,6 +1137,8 @@ public class App
         a.displayPopulation(count24);
         ArrayList<Country> count25 = a.getWorldPopulation();
         a.displayWorldPopulation(count25);
+        ArrayList<Country> count26 = a.getContinentPopulation();
+        a.displayContinent(count26);
         // Display results
         // Disconnect from database
         a.disconnect();
