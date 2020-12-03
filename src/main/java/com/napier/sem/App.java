@@ -1239,6 +1239,60 @@ public class App
             System.out.println(city_string);
         }
     }
+    public ArrayList<CountryLanguage> getCountryLanguage()
+    {
+        try
+        {
+            System.out.println("provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population");
+            // Create an SQL statement
+            ArrayList<CountryLanguage> count22 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT countrylanguage.Language, SUM(countrylanguage.Percentage * country.Population / 100) as Number, " +
+                            "(SUM(countrylanguage.Percentage * country.Population / 100) / 6078749450 * 100) as world_population " +
+                            "FROM countrylanguage, country WHERE countrylanguage.CountryCode = country.Code AND " +
+                            "countrylanguage.Language = 'Chinese' OR countrylanguage.CountryCode = country.Code AND " +
+                            "countrylanguage.Language = 'English' OR countrylanguage.CountryCode = country.Code AND " +
+                            "countrylanguage.Language = 'Hindi' OR countrylanguage.CountryCode = country.Code AND " +
+                            "countrylanguage.Language = 'Spanish' OR countrylanguage.CountryCode = country.Code AND " +
+                            "countrylanguage.Language = 'Arabic' GROUP by countrylanguage.Language ORDER BY " +
+                            "SUM(countrylanguage.Percentage * country.Population / 100) DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                CountryLanguage c = new CountryLanguage();
+                c.setLanguage(rset.getString("countrylanguage.Language"));
+                c.setPopulation(rset.getInt("Number"));
+                c.setWorldPopulation(rset.getInt("world_population"));
+                count22.add(c);
+            }
+            return count22;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public void displayCountryLanguage(ArrayList<CountryLanguage> countryLanguages)
+    {
+        if (countryLanguages == null){
+            System.out.println("No Cities");
+            return;
+        }
+        System.out.println(String.format("%-30s %-30s %-30s", "Language", "Number of People", "Percentage of World Population"));
+        for(CountryLanguage c: countryLanguages)
+        {
+            if (c == null)
+                continue;
+            long worldPopulation = 0;
+            String language_string = String.format("%-30s %-30s %-30s ", c.getLanguage(),c.getPopulation(),c.getWorldPopulation());
+            System.out.println(language_string);
+        }
+    }
     public static void main(String[] args)
     {
         // Create new Application
@@ -1318,6 +1372,8 @@ public class App
         a.displayDistrictPopulation(count29);
         ArrayList<City> count30 = a.getCityPopulation();
         a.displayCityPopulation(count30);
+        ArrayList<CountryLanguage> count31 = a.getCountryLanguage();
+        a.displayCountryLanguage(count31);
 
         // Display results
         // Disconnect from database
