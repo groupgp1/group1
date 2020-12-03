@@ -1183,7 +1183,47 @@ public class App
             System.out.println(city_string);
         }
     }
+    public ArrayList<City> getCityPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            ArrayList<City> count29 = new ArrayList<>();
+            Statement stmt = con.createStatement();
 
+            String strSelect =
+                    "SELECT population FROM city WHERE Name = 'Herat'" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                City c = new City();
+                c.setPopulation(rset.getInt("Population"));
+                count29.add(c);
+            }
+            return count29;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+    public void displayCityPopulation(ArrayList<City> city)
+    {
+        if (city == null){
+            System.out.println("No Population");
+            return;
+        }
+        for(City c: city)
+        {
+            if (c == null)
+                continue;
+
+            System.out.println("The Population of a City is "+ c.getPopulation());
+        }
+    }
     public void displayCapital(ArrayList<City> cities)
     {
         if (cities == null){
@@ -1276,6 +1316,9 @@ public class App
         a.displayCountryPopulation(count28);
         ArrayList<City> count29 = a.getDistrictPopulation();
         a.displayDistrictPopulation(count29);
+        ArrayList<City> count30 = a.getCityPopulation();
+        a.displayCityPopulation(count30);
+
         // Display results
         // Disconnect from database
         a.disconnect();
