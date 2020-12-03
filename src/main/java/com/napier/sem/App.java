@@ -995,6 +995,50 @@ public class App
         }
     }
 
+    public ArrayList<City> getDistrictPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            ArrayList<City> count28 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT population FROM city WHERE District = 'Herat'" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                City c = new City();
+                c.setPopulation(rset.getInt("Population"));
+                count28.add(c);
+            }
+            return count28;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public void displayDistrictPopulation(ArrayList<City> city)
+    {
+        if (city == null){
+            System.out.println("No Population");
+            return;
+        }
+        for(City c: city)
+        {
+            if (c == null)
+                continue;
+
+            String city_string = String.format("", c.getPopulation());
+            System.out.println("The Population of a District is "+ c.getPopulation());
+        }
+    }
+
     public ArrayList<Country> getCountryPopulation()
     {
         try
@@ -1230,6 +1274,8 @@ public class App
         a.displayRegion(count27);
         ArrayList<Country> count28 = a.getCountryPopulation();
         a.displayCountryPopulation(count28);
+        ArrayList<City> count29 = a.getDistrictPopulation();
+        a.displayDistrictPopulation(count29);
         // Display results
         // Disconnect from database
         a.disconnect();
