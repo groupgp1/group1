@@ -881,6 +881,49 @@ public class App
         return null;
     }
 
+    public ArrayList<Country> getWorldPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            ArrayList<Country> count22 = new ArrayList<>();
+            Statement stmt = con.createStatement();
+
+            String strSelect =
+                    "SELECT SUM(country.Population) as countryPopulation from country" ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            while (rset.next())
+            {
+                Country c = new Country();
+                c.setPopulation(rset.getString("countryPopulation"));
+                count22.add(c);
+            }
+            return count22;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get world details");
+        }
+        return null;
+    }
+
+    public void displayWorldPopulation(ArrayList<Country> country)
+    {
+        if (country == null){
+            System.out.println("No Population");
+            return;
+        }
+        for(Country c: country)
+        {
+            if (c == null)
+                continue;
+
+            System.out.println("The Population of the World is "+c.getPopulation());
+        }
+    }
+
     public void displayPopulation(ArrayList<City> cities)
     {
         if (cities == null){
@@ -1051,6 +1094,8 @@ public class App
         a.displayPopulation(count23);
         ArrayList<City> count24 = a.getPopulationCountry();
         a.displayPopulation(count24);
+        ArrayList<Country> count25 = a.getWorldPopulation();
+        a.displayWorldPopulation(count25);
         // Display results
         // Disconnect from database
         a.disconnect();
