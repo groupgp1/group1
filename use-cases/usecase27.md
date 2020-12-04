@@ -1,7 +1,7 @@
-### USE CASE: 26 All the countries in the world organised by largest population to smallest.
+### USE CASE: 27 All the countries in a continent organised by largest population to smallest.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want all the countries in the world organised by largest population to smallest.
+As a user I want all the countries in a continent organised by largest population to smallest.
 Scope
 World.
 
@@ -12,7 +12,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about all the countries in the world organised by largest population to smallest.
+A report is available for users who want to know about all the countries in a continent organised by largest population to smallest.
 
 Failed End Condition
 No report is produced.
