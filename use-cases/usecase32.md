@@ -1,7 +1,7 @@
-### USE CASE: 27 The top N populated countries in a region where N is provided by the user.
+### USE CASE: 27 All the cities in the world organised by largest population to smallest.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want the top N populated countries in a region where N is provided by the user.
+As a user I want all the cities in the world organised by largest population to smallest.
 Scope
 World.
 
@@ -12,7 +12,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about the top N populated countries in a region where N is provided by the user.
+A report is available for users who want to know about all the cities in the world organised by largest population to smallest.
 
 Failed End Condition
 No report is produced.
@@ -24,8 +24,8 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of the top N populated countries in a region where N is provided by the user.
-User captures information of the top N populated countries in a region where N is provided by the user.
+User requests information of all the cities in the world organised by largest population to smallest.
+User captures information of all the cities in the world organised by largest population to smallest.
 EXTENSIONS
 Role does not exist:
 SUB-VARIATIONS
