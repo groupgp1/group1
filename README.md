@@ -8,3 +8,4 @@ group 1
 - Release Build Status [![Build Status](https://travis-ci.com/groupgp1/group1.svg?branch=release)](https://travis-ci.com/groupgp1/group1)
 - Main Coverage Status [![codecov](https://codecov.io/gh/groupgp1/group1/branch/main/graph/badge.svg?token=ZAS8uKDLFr)](https://codecov.io/gh/groupgp1/group1)
 - master Coverage Status [![codecov](https://codecov.io/gh/groupgp1/group1/branch/master/graph/badge.svg?token=ZAS8uKDLFr)](https://codecov.io/gh/groupgp1/group1)
+- develop Coverage Status [![codecov](https://codecov.io/gh/groupgp1/group1/branch/develop/graph/badge.svg?token=ZAS8uKDLFr)](https://codecov.io/gh/groupgp1/group1)
