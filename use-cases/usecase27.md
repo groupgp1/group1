@@ -24,8 +24,8 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of all the countries in the world organised by largest population to smallest.
-User captures information of all the countries in the world organised by largest population to smallest.
+User requests information of all the countries in a continent organised by largest population to smallest.
+User captures information of all the countries in a continent organised by largest population to smallest.
 EXTENSIONS
 Role does not exist:
 SUB-VARIATIONS
