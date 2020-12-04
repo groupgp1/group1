@@ -1,4 +1,4 @@
-### USE CASE: 27	The top N populated countries in a region where N is provided by the user.
+### USE CASE: 27 The top N populated countries in a region where N is provided by the user.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
 As a user I want the top N populated countries in a region where N is provided by the user.
