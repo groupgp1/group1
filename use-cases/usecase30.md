@@ -1,7 +1,7 @@
-### USE CASE: 27 The top N populated countries in a continent where N is provided by the user.
+### USE CASE: 30 The population of a district.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want the top N populated countries in a continent where N is provided by the user.
+As a user I want The population of a district.
 Scope
 World.
 
@@ -12,7 +12,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about the top N populated countries in a continent where N is provided by the user.
+A report is available for users who want to know about The population of a district.
 
 Failed End Condition
 No report is produced.
@@ -24,8 +24,8 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of the top N populated countries in a continent where N is provided by the user.
-User captures information of the top N populated countries in a continent where N is provided by the user.
+User requests information of the population of a district.
+User captures information of the population of a district.
 EXTENSIONS
 Role does not exist:
 SUB-VARIATIONS
