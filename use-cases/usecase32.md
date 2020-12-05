@@ -1,7 +1,7 @@
-### USE CASE: 27 All the cities in the world organised by largest population to smallest.
+### USE CASE: 32 provide county languages (Chinese, English, Hindi,  Spanish,   Arabic)
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want all the cities in the world organised by largest population to smallest.
+As a user I want to provide county languages (Chinese, English, Hindi,  Spanish,   Arabic)
 Scope
 World.
 
@@ -12,7 +12,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about all the cities in the world organised by largest population to smallest.
+A report is available for users who want to know about to provide county languages (Chinese, English, Hindi,  Spanish,   Arabic)
 
 Failed End Condition
 No report is produced.
@@ -24,8 +24,8 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of all the cities in the world organised by largest population to smallest.
-User captures information of all the cities in the world organised by largest population to smallest.
+User requests to provide county languages (Chinese, English, Hindi,  Spanish,   Arabic).
+User captures to provide county languages (Chinese, English, Hindi,  Spanish,   Arabic).
 EXTENSIONS
 Role does not exist:
 SUB-VARIATIONS
