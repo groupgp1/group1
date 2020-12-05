@@ -35,6 +35,21 @@ rectangle "World Report System" {
     usecase UCd as "displayPopulation"
     usecase UC23 as "getPopulationWithContinent"
     usecase UC24 as "getPopulationWithRegion"
+    usecase UC25 as "getPopulationWithCountry"
+    usecase UC26 as "GetWorldPopulation"
+    usecase UCe as "DisplayWorldPopulation"
+    usecase UC27 as "GetContinentPopulation"
+    usecase UCf as "DisplayContinentPopulation"
+    usecase UC28 as "GetRegionPopulation"
+    usecase UCg as "DisplayRegionPopulation"
+    usecase UC29 as "GetCountryPopulation"
+    usecase UCh as "DisplayCountryPopulation"
+    usecase UC30 as "GetDistrictPopulation"
+    usecase UCi as "DisplayDistrictPopulation"
+    usecase UC31 as "GetCountryPopulation"
+    usecase UCj as "DisplayCountryPopulation"
+    usecase UC32 as "GetCountryPopulation"
+    usecase UCk as "DisplayCountryPopulation"
 
     user - UC1
     user - UC2
@@ -60,6 +75,15 @@ rectangle "World Report System" {
     user - UC22
     user - UC23
     user - UC24
+    user - UC25
+    user - UC26
+    user - UC27
+    user - UC28
+    user - UC29
+    user - UC30
+    user - UC31
+    user - UC32
+
 
     UC1 ..> UCa : include
     UC2 ..> UCa : include
@@ -85,6 +109,16 @@ rectangle "World Report System" {
     UC22 ..> UCc : include
     UC23 ..> UCd : include
     UC24 ..> UCd : include
+    UC25 ..> UCd : include
+    UC26 ..> UCe : include
+    UC27 ..> UCf : include
+    UC28 ..> UCg : include
+    UC29 ..> UCh : include
+    UC30 ..> UCi : include
+    UC31 ..> UCj : include
+    UC32 ..> UCk : include
+
+
 
     UC1 - Database
     UC2 - Database
@@ -110,6 +144,15 @@ rectangle "World Report System" {
     UC22 - Database
     UC23 - Database
     UC24 - Database
+    UC25 - Database
+    UC26 - Database
+    UC27 - Database
+    UC28 - Database
+    UC29 - Database
+    UC30 - Database
+    UC31 - Database
+    UC32 - Database
+
 
 
 }
