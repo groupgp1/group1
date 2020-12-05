@@ -1,7 +1,7 @@
-### USE CASE: 26 All the countries in the world organised by largest population to smallest.
+### USE CASE: 26 The population of the world.
 #### CHARACTERISTIC INFORMATION
 ##### Goal in Context
-As a user I want all the countries in the world organised by largest population to smallest.
+As a user I want all the population of the world.
 Scope
 World.
 
@@ -12,7 +12,7 @@ Preconditions
 We know the role. Database contains world data.
 
 Success End Condition
-A report is available for users who want to know about all the countries in the world organised by largest population to smallest.
+A report is available for users who want to know about all the population of the world.
 
 Failed End Condition
 No report is produced.
@@ -24,8 +24,8 @@ Trigger
 A request for users sent to database.
 
 MAIN SUCCESS SCENARIO
-User requests information of all the countries in the world organised by largest population to smallest.
-User captures information of all the countries in the world organised by largest population to smallest.
+User requests information of all the population of the world.
+User captures information of all the population of the world.
 EXTENSIONS
 Role does not exist:
 SUB-VARIATIONS
