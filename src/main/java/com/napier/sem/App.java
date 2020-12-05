@@ -410,7 +410,7 @@ public class App
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.Name, city.CountryCode, city.District, city.Population,country.Code from city, country " +
-                            "WHERE District = 'Gelderland' order by Population desc";
+                            "WHERE city.District = 'Gelderland' and city.CountryCode = country.Code order by Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> count10 = new ArrayList<>();
@@ -1156,15 +1156,15 @@ public class App
             System.out.println("No countries");
             return;
         }
-        System.out.println(String.format("%-10s %-15s %-20s %-15s %-15s %-15s", "Country No", "Name", "Continent", "Region", "Population", "Capital"));
+        System.out.println(String.format("%-30s %-30s %-30s %-30s %-30s", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all employees in the list
         for (Country c: countries)
         {
             if (c == null)
                 continue;
             String country_string =
-                    String.format("%-10s %-15s %-20s %-15s %-15s %-15s",
-                            c.ID, c.name, c.continent, c.region, c.population, c.capital);
+                    String.format("%-30s %-30s %-30s %-30s %-30s",
+                             c.name, c.continent, c.region, c.population, c.capital);
             System.out.println(country_string);
         }
     }
@@ -1174,12 +1174,12 @@ public class App
             System.out.println("No Cities");
             return;
         }
-        System.out.println(String.format("%-10s %-10s %-10s %-10s", "Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-30s %-30s %-30s %-30s", "Name", "Country", "District", "Population"));
         for(City c: cities)
         {
             if (c == null)
                 continue;
-            String city_string = String.format("%-10s %-10s %-10s %-10s", c.getName(),c.getCountry(),c.getDistrict(),c.getPopulation());
+            String city_string = String.format("%-30s %-30s %-30s %-30s", c.getName(),c.getCountry(),c.getDistrict(),c.getPopulation());
             System.out.println(city_string);
         }
     }
